@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hello World</title>
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      overflow: hidden;
+    }
+
+    /* Animated background bubbles */
+    .bubbles {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .bubble {
+      position: absolute;
+      bottom: -160px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.05);
+      animation: rise linear infinite;
+    }
+
+    .bubble:nth-child(1)  { left:  5%; width: 80px;  height: 80px;  animation-duration: 8s;  animation-delay: 0s;   }
+    .bubble:nth-child(2)  { left: 15%; width: 20px;  height: 20px;  animation-duration: 5s;  animation-delay: 2s;   }
+    .bubble:nth-child(3)  { left: 25%; width: 50px;  height: 50px;  animation-duration: 7s;  animation-delay: 4s;   }
+    .bubble:nth-child(4)  { left: 35%; width: 30px;  height: 30px;  animation-duration: 6s;  animation-delay: 1s;   }
+    .bubble:nth-child(5)  { left: 50%; width: 60px;  height: 60px;  animation-duration: 9s;  animation-delay: 3s;   }
+    .bubble:nth-child(6)  { left: 65%; width: 25px;  height: 25px;  animation-duration: 5s;  animation-delay: 5s;   }
+    .bubble:nth-child(7)  { left: 75%; width: 70px;  height: 70px;  animation-duration: 11s; animation-delay: 0.5s; }
+    .bubble:nth-child(8)  { left: 85%; width: 35px;  height: 35px;  animation-duration: 6s;  animation-delay: 2.5s; }
+    .bubble:nth-child(9)  { left: 92%; width: 15px;  height: 15px;  animation-duration: 4s;  animation-delay: 1.5s; }
+    .bubble:nth-child(10) { left: 45%; width: 45px;  height: 45px;  animation-duration: 8s;  animation-delay: 6s;   }
+
+    @keyframes rise {
+      0%   { transform: translateY(0) rotate(0deg);   opacity: 0.6; }
+      100% { transform: translateY(-110vh) rotate(720deg); opacity: 0; }
+    }
+
+    /* Card */
+    .card {
+      position: relative;
+      text-align: center;
+      padding: 3.5rem 4rem;
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.07);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+      animation: fadeUp 0.9s ease both;
+      max-width: 520px;
+      width: 90%;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to   { opacity: 1; transform: translateY(0);    }
+    }
+
+    .emoji {
+      font-size: 4rem;
+      display: block;
+      margin-bottom: 1rem;
+      animation: wave 2.5s ease-in-out infinite;
+      transform-origin: 70% 70%;
+    }
+
+    @keyframes wave {
+      0%,  60%, 100% { transform: rotate(0deg);   }
+      10%, 30%        { transform: rotate(14deg);  }
+      20%             { transform: rotate(-8deg);  }
+      40%             { transform: rotate(-4deg);  }
+      50%             { transform: rotate(10deg);  }
+    }
+
+    h1 {
+      font-size: clamp(2rem, 6vw, 3.2rem);
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      background: linear-gradient(90deg, #e0c3fc, #8ec5fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.75rem;
+    }
+
+    p {
+      font-size: 1.1rem;
+      color: rgba(255, 255, 255, 0.65);
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 2.25rem;
+      border-radius: 50px;
+      background: linear-gradient(135deg, #a78bfa, #60a5fa);
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 8px 24px rgba(96, 165, 250, 0.35);
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(96, 165, 250, 0.5);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+    }
+
+    .dots {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 2rem;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+
+    .dot:nth-child(2) { animation-delay: 0.3s; }
+    .dot:nth-child(3) { animation-delay: 0.6s; }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1);   opacity: 0.3; }
+      50%       { transform: scale(1.5); opacity: 1;   }
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bubbles" aria-hidden="true">
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+  </div>
+
+  <div class="card">
+    <span class="emoji" role="img" aria-label="Waving hand">👋</span>
+    <h1>Hello, World!</h1>
+    <p>Welcome to the wonderful world of the web.<br>Glad you stopped by.</p>
+    <button class="btn" id="greet-btn" aria-label="Say Hi Back">Say Hi Back</button>
+    <p class="sr-only" aria-live="polite" id="btn-status"></p>
+    <div class="dots" aria-hidden="true">
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('greet-btn').addEventListener('click', function () {
+      this.textContent = '🎉 Thanks!';
+      document.getElementById('btn-status').textContent = 'Thanks for saying hi!';
+    });
+  </script>
+
+</body>
+</html>
